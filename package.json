@@ -1,0 +1,24 @@
+{
+  "name": "snakegame",
+  "version": "1.0.0",
+  "description": "A simple Snake game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbd367/SnakeGame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbd367/SnakeGame/issues"
+  },
+  "homepage": "https://github.com/sbd367/SnakeGame#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  }
+}

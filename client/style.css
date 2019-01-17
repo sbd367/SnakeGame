@@ -1,0 +1,12 @@
+canvas{
+    position: absolute;
+    left: 35vw;
+}
+
+#score{
+    position: relative;
+    left: 50vw;
+}
+h6{
+    position: relative;
+}

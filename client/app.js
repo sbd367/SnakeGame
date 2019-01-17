@@ -1,6 +1,6 @@
-   $(document).ready(function(){
+$(document).ready(function(){
 
-   const GAME_CANVAS_BACKGROUND = "black";
+    const GAME_CANVAS_BACKGROUND = "black";
     const GAME_CANVAS_BORDER = 'green';
 
     var gameCanvas = document.getElementById('gameCanvas');
@@ -43,8 +43,6 @@
         const DOWN_KEY = 40;
 
         const keyPressed = event.keyCode;
-        console.log(keyPressed)
-        const goingUp = dy === -10;
         const goingDown = dy === 10;
         const goingRight = dx === 10;
         const goingLeft = dx === -10;
@@ -88,7 +86,11 @@
 
     function main(){
         
-        if(didGameEnd()) return
+        if(didGameEnd()){
+            $('#modal1').show();
+            $('#endGame').append("you lose whith a score of: " + score)
+            return
+        }
 
         setTimeout(function onTick(){
             clearCanvas();
@@ -140,6 +142,9 @@
                 hitBottomWall
     }
 
+    $('#playAgain').on('click', () =>{
+        location.reload();
+    })
     createFood();
     main();
 })
