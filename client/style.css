@@ -10,3 +10,7 @@ canvas{
 h6{
     position: relative;
 }
+
+#inputText{
+    width: 20vw;
+}

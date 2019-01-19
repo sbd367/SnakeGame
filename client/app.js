@@ -88,7 +88,7 @@ $(document).ready(function(){
         
         if(didGameEnd()){
             $('#modal1').show();
-            $('#endGame').append("you lose whith a score of: " + score)
+            $('#endGame').append("you lost whith a score of: " + score)
             return
         }
 
@@ -144,6 +144,28 @@ $(document).ready(function(){
 
     $('#playAgain').on('click', () =>{
         location.reload();
+    });
+
+    $.getJSON("/api/theScores", (data) => {
+        var results = [];
+        for(i=0; i < data.length; i++){
+           results.push(data[i].Username)
+           $('#user'+i).append(data[i].Username)
+           $('#score'+i).append(data[i].Points)
+        }
+        console.log(results)
+    })
+
+    $('#submit').on('click', () =>{
+        let kyle = $('.username').val();
+
+        $.post('/api/scores', 
+         {
+            Username: kyle,
+            Points: score
+         }, (data, status) =>{
+            console.log("data: "+ data + "======= Status: "+ status)
+         })
     })
     createFood();
     main();

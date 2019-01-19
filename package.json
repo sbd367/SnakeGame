@@ -18,7 +18,13 @@
   },
   "homepage": "https://github.com/sbd367/SnakeGame#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "path": "^0.12.7"
+    "mongoose": "^5.4.5",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
+    "path": "^0.12.7",
+    "sequelize": "^4.42.0"
   }
 }
