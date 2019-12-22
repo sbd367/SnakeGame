@@ -7,11 +7,10 @@ let db = require("./models");
 let logger = require('morgan');
 let mongoose = require('mongoose');
 
-let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/snakeGame";
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://Spencer:Xbv6p59FrfmOiOFC@cluster0-pa6cx.mongodb.net/test?retryWrites=true&w=majority";
 
-console.log(process.env.MONGODB_URI);
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true});
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 // // Static directory
 app.use(express.static("public"));
@@ -36,9 +35,7 @@ app.get('/style.css', (req, res) => {
 });
 
 app.post('/api/scores', (req, res) =>{
-    console.log(req.body)
-    let username = req.body.username;
-    let score = req.body.points;
+    console.log(`${req.body} hit here`);
 
     db.Score.create(req.body).then(() => console.log("it did something"))
     .catch((err) => console.log(err));
@@ -49,7 +46,7 @@ app.get("/api/theScores", (req, res) => {
     db.Score.find({}, (err, data) => {
         if(err) console.log(err)
         else res.json(data);
-    })
+    }).catch(err => console.error(err))
 })
 
 app.listen(PORT, function() {

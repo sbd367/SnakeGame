@@ -10,7 +10,23 @@ canvas{
 h6{
     position: relative;
 }
-
+.title{
+    margin-left: 36% !important;
+}
+#sucessModal{
+    width: 40% !important ; height: 20% !important ;
+}
 #inputText{
     width: 20vw;
+}
+.topScores{
+    border-top: 8px !important;
+    margin: 5px 30px 5px 30px;
+}
+.modal-footer{
+    width: 95% !important;
+    margin: 5px 30px 5px 30px;
+}
+.modal{
+    width: 55% !important ; height: 50% !important ;
 }
