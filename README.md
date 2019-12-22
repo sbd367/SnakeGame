@@ -1,5 +1,5 @@
 # SnakeGame
 Simple CRUD snake game 
 
-#Start App
+# Start App
 run `npm install` and `npm start`
