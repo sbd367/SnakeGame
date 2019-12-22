@@ -1,11 +1,10 @@
 $(document).ready(function(){
 
-    const GAME_CANVAS_BACKGROUND = "black";
-    const GAME_CANVAS_BORDER = 'green';
+    const GAME_CANVAS_BACKGROUND = "black",
+          GAME_CANVAS_BORDER = 'green';
 
-    var gameCanvas = document.getElementById('gameCanvas');
-
-    var ctx = gameCanvas.getContext('2d');
+    var gameCanvas = document.getElementById('gameCanvas'),
+        ctx = gameCanvas.getContext('2d');
 
     var clearCanvas = () =>{
         ctx.fillStyle = GAME_CANVAS_BORDER;
@@ -22,12 +21,11 @@ $(document).ready(function(){
     {x: 220, y: 250}
     ]
 
-    let score = 0;
+    let score = 0,
+        dx = +10,
+        dy = 0;
 
-    let dx = +10;
-    let dy = 0;
-
-    var drawSnakePart = (snakePart) =>{
+    var drawSnakePart = snakePart =>{
         ctx.fillStyle = 'red';
         ctx.strokeStyle = 'orange';
 
@@ -35,17 +33,17 @@ $(document).ready(function(){
         ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
     }
 
-    var changeDirection = (event) => { 
+    var changeDirection = event => { 
         
-        const RIGHT_KEY = 39;
-        const LEFT_KEY = 37;
-        const UP_KEY = 38;
-        const DOWN_KEY = 40;
+        const RIGHT_KEY = 39,
+              LEFT_KEY = 37,
+              UP_KEY = 38,
+              DOWN_KEY = 40;
 
-        const keyPressed = event.keyCode;
-        const goingDown = dy === 10;
-        const goingRight = dx === 10;
-        const goingLeft = dx === -10;
+        const keyPressed = event.keyCode,
+              goingDown = dy === 10,
+              goingRight = dx === 10,
+              goingLeft = dx === -10;
 
         if (keyPressed === LEFT_KEY && !goingRight) {
             dx = -10;
@@ -131,10 +129,10 @@ $(document).ready(function(){
             if (didCollide) return true
         }
 
-        const hitLeftWall = snake[0].x < 0;
-        const hitRightWall = snake[0].x > gameCanvas.width - 10;
-        const hitToptWall = snake[0].y < 0;
-        const hitBottomWall = snake[0].y > gameCanvas.height - 10;
+        const hitLeftWall = snake[0].x < 0,
+              hitRightWall = snake[0].x > gameCanvas.width - 10,
+              hitToptWall = snake[0].y < 0,
+              hitBottomWall = snake[0].y > gameCanvas.height - 10;
 
         return hitLeftWall || 
                 hitRightWall || 
@@ -142,26 +140,34 @@ $(document).ready(function(){
                 hitBottomWall
     }
 
-    $('#playAgain').on('click', () =>{
-        location.reload();
+    $('button#playAgain').on('click', () =>{
+        window.location.reload();
     });
 
-    $.getJSON("/api/theScores", (data) => {
+    $.getJSON("/api/theScores", data => {
         var results = [];
         for(i=0; i < data.length; i++){
-           results.push(data[i].Username)
-           $('#user'+i).append(data[i].Username)
-           $('#score'+i).append(data[i].Points)
-        }
-        console.log(results)
-    })
+           results.push(data[i])
+        };
+
+        var sortedRes = results.sort((a, b) => (a.Points < b.Points) ? 1 : -1);
+        sortedRes.slice(0, 5).forEach( (element, i) => {
+           $('#scoreboard').append(
+           `<tr id="score${i}">
+             <td id="user${i}">${element.Username}</td>
+             <td id="user${i}">${element.Points}</td>
+            </tr>`
+          );
+        });
+    });
 
     $('#submit').on('click', () =>{
-        let kyle = $('.username').val();
-
+        let UN = $('.username').val();
+        $('#modal1').hide();
+        $('#sucessModal').show();
         $.post('/api/scores', 
          {
-            Username: kyle,
+            Username: UN,
             Points: score
          }, (data, status) =>{
             console.log("data: "+ data + "======= Status: "+ status)

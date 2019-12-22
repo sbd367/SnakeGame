@@ -22,49 +22,42 @@
 </head>
 <body>
     <nav class="navbar navbar-light bg-light">
-        <h6>Score:
-        <span id="score" class="navbar-brand mb-0 h1">0</span>
-    </h6>
+        <h6 id="score">Score:
+            <span class="navbar-brand mb-0 h1">0</span>
+        </h6>
     </nav>
     <!-- <h1>Score</h1>
     <h1 id="score">0</h1> -->
     <canvas id="gameCanvas" width="500" height="500"></canvas>
 
     <div id="modal1" class="modal">
-        <div class="modal-content">
+        <div class="modal-content title">
             <h4>You Lose!</h4>
             <p id="endGame"></p>
         </div>
         <div class="topScores">
             <h4 class="topTitle">Top Socres</h4>
-            <table>
+            <table id="scoreboard">
                 <tr id="titles">
-                    <td>Username</td>
-                    <td>Points</td>
+                    <th>Username</th>
+                    <th>Points</th>
                 </tr>        
-                <tr id="score0">
-                        <td id="user0"></td>
-                </tr>
-                <tr id="score1">
-                        <td id="user1"></td>
-                </tr>
-                <tr id="score2">
-                        <td id="user2"></td>
-                </tr>
-                <tr id="score3">
-                        <td id="user3"></td>
-                </tr>
-                <tr id="score4">
-                        <td id="user5"></td>
-                </tr>
             </table>
         </div>
         <div class="modal-footer">
             <form action="">
-                <input class="inputText username" type="text">
+                <input placeholder="Username" class="inputText username" type="text">
             </form>
             <input id="submit" type="submit" class="waves-effect waves-light btn">
-            <a id="playAgain" href="#!" class="modal-close waves-effect waves-green btn-flat">Play Again</a>
+            <button id="playAgain" href="#!" class="modal-close waves-effect waves-green btn-flat">Play Again</button>
+        </div>
+    </div>
+    <div id="sucessModal" class="modal">
+        <div class="modal-content title">
+            <h6>Sucesfully posted score</h6>
+        </div>
+        <div class="modal-footer">
+            <button id="playAgain" type="button" class="modal-close waves-effect waves-green btn-flat">Play Again</button>
         </div>
     </div>
 </body>
