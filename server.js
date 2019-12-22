@@ -6,8 +6,8 @@ let app = express();
 let db = require("./models");
 let logger = require('morgan');
 let mongoose = require('mongoose');
-
-let MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://Spencer:Xbv6p59FrfmOiOFC@cluster0-pa6cx.mongodb.net/test?retryWrites=true&w=majority";
+let dotenv = require('dotenv').config();
+let MONGODB_URI = process.env.MONGODB_URI || dotenv.parsed.MOGODB_URL;
 
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true});
